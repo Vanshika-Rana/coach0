@@ -21,7 +21,6 @@ app.post("/webhook", async (req, res) => {
     const mediaType = req.body.MediaContentType0;
 
     try {
-      // Download the file
       const response = await axios.get(mediaUrl, {
         responseType: "arraybuffer",
         auth: {
@@ -44,8 +43,7 @@ app.post("/webhook", async (req, res) => {
         const result = await mammoth.extractRawText({ buffer });
         extractedText = result.value;
       } else {
-        extractedText =
-          "❌ Unsupported file type. Please upload a PDF or DOCX.";
+        extractedText = "Unsupported file type. Please upload a PDF or DOCX.";
       }
 
       console.log(`📄 Resume from ${from}:\n\n${extractedText}`);
@@ -57,17 +55,16 @@ app.post("/webhook", async (req, res) => {
         </Response>
       `);
     } catch (err) {
-      console.error("❌ Error parsing resume:", err.message);
+      console.error("Error parsing resume:", err.message);
 
       res.set("Content-Type", "text/xml");
       res.send(`
         <Response>
-          <Message>❌ Failed to process your file. Try again with a different format.</Message>
+          <Message>Failed to process your file. Try again with a different format.</Message>
         </Response>
       `);
     }
   } else {
-    // fallback for non-media messages
     res.set("Content-Type", "text/xml");
     res.send(`
       <Response>
