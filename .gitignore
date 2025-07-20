@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Env variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# ngrok or local tooling
+*.pid
+*.seed
+*.pid.lock
+
+# Output files or builds
+dist/
+build/
+
+# IDE-specific
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Optional: resume uploads folder (if storing locally)
+uploads/
